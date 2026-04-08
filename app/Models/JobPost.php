@@ -9,4 +9,9 @@ class JobPost extends Model
 {
     /** @use HasFactory<\Database\Factories\JobPostFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description'
+    ];
 }
