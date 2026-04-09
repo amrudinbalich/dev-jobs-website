@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Requests;
+namespace {{ namespace }};
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateJobPostRequest extends FormRequest
+class {{ class }} extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,8 +23,7 @@ class UpdateJobPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'sometimes|string|min:3|max:255',
-            'description' => 'sometimes|string|min:10|max:5000'
+            //
         ];
     }
 }

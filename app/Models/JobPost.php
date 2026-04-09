@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class JobPost extends Model
@@ -12,6 +13,15 @@ class JobPost extends Model
 
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'company_id'
     ];
+
+    /**
+     * @return BelongsTo<Company, JobPost>
+     */
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

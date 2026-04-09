@@ -1,16 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\JobPostController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobPostController;
 use Illuminate\Support\Facades\Route;
-use App\Models\JobPost;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/jobs', function (JobPost $jobPost) {
-    $jobs = $jobPost->all();
-    return response()->json($jobs);
-});
-
 Route::apiResource('job-posts', JobPostController::class);
+Route::apiResource('companies', CompanyController::class);

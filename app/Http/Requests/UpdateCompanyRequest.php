@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateJobPostRequest extends FormRequest
+class UpdateCompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,11 @@ class UpdateJobPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'sometimes|string|min:3|max:255',
-            'description' => 'sometimes|string|min:10|max:5000'
+            'name' => 'sometimes|string|min:3|max:255|unique:companies,name',
+            'description' => 'sometimes|string|min:10|max:5000',
+            'size' => 'sometimes|string|min:1',
+            'logo_url' => 'nullable|url|max:255',
+            'website_url' => 'nullable|url|max:255'
         ];
     }
 }
