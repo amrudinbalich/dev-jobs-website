@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
             'password' => 'Laradev',
         ]);
 
-        $this->call(
+        $this->call([
+            CompanySeeder::class,
             JobPostSeeder::class
-        );
+        ]);
     }
 }

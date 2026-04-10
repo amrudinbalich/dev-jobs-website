@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Company;
 use App\Models\JobPost;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -56,9 +57,12 @@ test('Fails if fields are missing.', function () {
 
 // create
 test('Create job post.', function () {
+    $company = Company::factory()->create();
+
     $response = $this->postJson('/job-posts', [
         'title' => 'Software Engineer',
         'description' => 'We are looking for a software engineer.',
+        'company_id' => $company->id
     ]);
 
     $response->assertStatus(201)
@@ -98,7 +102,7 @@ test('Update job post.', function () {
 
     $response = $this->putJson("/job-posts/{$jobPost->id}", [
         'title' => 'Updated Title',
-        'description' => 'Updated description for job post.',
+        'description' => 'Updated description for job post.'
     ]);
 
     $response->assertStatus(200)

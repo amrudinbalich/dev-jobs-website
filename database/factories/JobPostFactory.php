@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use App\Models\JobPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,8 @@ class JobPostFactory extends Factory
     {
         return [
             'title' => fake()->name(),
-            'description' => fake()->paragraph()
+            'description' => fake()->paragraph(),
+            'company_id' => Company::factory()->create()
         ];
     }
 }

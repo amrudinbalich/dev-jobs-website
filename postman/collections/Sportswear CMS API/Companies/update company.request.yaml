@@ -1,0 +1,30 @@
+$kind: http-request
+method: PUT
+url: '{{baseUrl}}/companies/:company'
+order: 4000
+description: 'Updates a company. All fields are optional/sometimes for update.'
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+pathVariables:
+  - key: company
+    value: '1'
+body:
+  type: json
+  content: |-
+    {
+      "name": "Acme Sportswear Updated",
+      "description": "Updated description for the company profile.",
+      "size": "51-200",
+      "logo_url": "https://example.com/new-logo.png",
+      "website_url": "https://example.com/company"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Response has a successful status", function () {
+        pm.expect(pm.response.code).to.eql(200);
+      });
