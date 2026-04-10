@@ -10,14 +10,14 @@ uses(RefreshDatabase::class);
 test('Get all companies.', function () {
     Company::factory(5)->create();
 
-    $response = $this->getJson('/companies');
+    $response = $this->getJson('/api/companies');
 
     $response->assertStatus(200)
              ->assertJsonCount(5);
 });
 
 test('Returns empty array when no companies.', function () {
-    $response = $this->getJson('/companies');
+    $response = $this->getJson('/api/companies');
 
     $response->assertStatus(200)
              ->assertJsonCount(0);
@@ -25,7 +25,7 @@ test('Returns empty array when no companies.', function () {
 
 // STORE
 test('Create company.', function () {
-    $response = $this->postJson('/companies', [
+    $response = $this->postJson('/api/companies', [
         'name' => 'Anthropic',
         'description' => 'AI safety company based in San Francisco.',
         'size' => '1-10',
@@ -45,7 +45,7 @@ test('Create company.', function () {
 });
 
 test('Fails to create company with missing fields.', function () {
-    $response = $this->postJson('/companies', []);
+    $response = $this->postJson('/api/companies', []);
 
     $response->assertStatus(422)
              ->assertJsonValidationErrors(['name', 'description']);
@@ -55,7 +55,7 @@ test('Fails to create company with missing fields.', function () {
 test('Get single company.', function () {
     $company = Company::factory()->create();
 
-    $response = $this->getJson("/companies/{$company->id}");
+    $response = $this->getJson("/api/companies/{$company->id}");
 
     $response->assertStatus(200)
              ->assertJsonFragment([
@@ -65,7 +65,7 @@ test('Get single company.', function () {
 });
 
 test('Returns 404 if company not found.', function () {
-    $response = $this->getJson('/companies/999');
+    $response = $this->getJson('/api/companies/999');
 
     $response->assertStatus(404);
 });
@@ -74,7 +74,7 @@ test('Returns 404 if company not found.', function () {
 test('Update company.', function () {
     $company = Company::factory()->create();
 
-    $response = $this->putJson("/companies/{$company->id}", [
+    $response = $this->putJson("/api/companies/{$company->id}", [
         'name' => 'Updated Name',
         'description' => 'Updated description here for the company.',
         'size' => '51-200',
@@ -94,7 +94,7 @@ test('Update company.', function () {
 test('Partially update company.', function () {
     $company = Company::factory()->create(['name' => 'Original Name']);
 
-    $response = $this->putJson("/companies/{$company->id}", [
+    $response = $this->putJson("/api/companies/{$company->id}", [
         'name' => 'New Name',
     ]);
 
@@ -103,7 +103,7 @@ test('Partially update company.', function () {
 });
 
 test('Returns 404 on update if company not found.', function () {
-    $response = $this->putJson('/companies/999', [
+    $response = $this->putJson('/api/companies/999', [
         'name' => 'Updated Name',
     ]);
 
@@ -116,7 +116,7 @@ test('Delete company.', function () {
 
     $this->assertDatabaseHas('companies', ['id' => $company->id]);
 
-    $response = $this->deleteJson("/companies/{$company->id}");
+    $response = $this->deleteJson("/api/companies/{$company->id}");
 
     $response->assertStatus(204);
 
@@ -124,7 +124,7 @@ test('Delete company.', function () {
 });
 
 test('Returns 404 on delete if company not found.', function () {
-    $response = $this->deleteJson('/companies/999');
+    $response = $this->deleteJson('/api/companies/999');
 
     $response->assertStatus(404);
 });
@@ -135,7 +135,7 @@ test('Deleting company also deletes related job posts.', function () {
 
     $this->assertDatabaseHas('job_posts', ['id' => $jobPost->id]);
 
-    $this->deleteJson("/companies/{$company->id}")
+    $this->deleteJson("/api/companies/{$company->id}")
          ->assertStatus(204);
 
     $this->assertDatabaseMissing('companies', ['id' => $company->id]);
