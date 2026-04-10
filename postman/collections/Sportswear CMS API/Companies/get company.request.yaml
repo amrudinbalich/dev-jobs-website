@@ -1,0 +1,18 @@
+$kind: http-request
+method: GET
+url: '{{baseUrl}}/companies/:company'
+order: 3000
+description: 'Returns a single company with nested job_posts relation loaded.'
+headers:
+  - key: Accept
+    value: application/json
+pathVariables:
+  - key: company
+    value: '1'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Response has a successful status", function () {
+        pm.expect(pm.response.code).to.eql(200);
+      });

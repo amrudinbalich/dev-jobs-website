@@ -1,0 +1,15 @@
+$kind: http-request
+method: GET
+url: '{{baseUrl}}/job-posts'
+order: 1000
+description: 'Returns a collection of job posts with nested company relation loaded.'
+headers:
+  - key: Accept
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Response has a successful status", function () {
+        pm.expect(pm.response.code).to.eql(200);
+      });

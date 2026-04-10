@@ -1,0 +1,27 @@
+$kind: http-request
+method: PUT
+url: '{{baseUrl}}/job-posts/:jobPost'
+order: 4000
+description: 'Updates a job post. The implementation validates title and description only on update.'
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+pathVariables:
+  - key: jobPost
+    value: '1'
+body:
+  type: json
+  content: |-
+    {
+      "title": "Lead Backend Engineer",
+      "description": "Lead API development for the sportswear CMS platform."
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Response has a successful status", function () {
+        pm.expect(pm.response.code).to.eql(200);
+      });

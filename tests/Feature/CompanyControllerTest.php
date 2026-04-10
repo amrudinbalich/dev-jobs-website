@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Company;
+use App\Models\JobPost;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -126,4 +127,17 @@ test('Returns 404 on delete if company not found.', function () {
     $response = $this->deleteJson('/companies/999');
 
     $response->assertStatus(404);
+});
+
+test('Deleting company also deletes related job posts.', function () {
+    $company = Company::factory()->create();
+    $jobPost = JobPost::factory()->create(['company_id' => $company->id]);
+
+    $this->assertDatabaseHas('job_posts', ['id' => $jobPost->id]);
+
+    $this->deleteJson("/companies/{$company->id}")
+         ->assertStatus(204);
+
+    $this->assertDatabaseMissing('companies', ['id' => $company->id]);
+    $this->assertDatabaseMissing('job_posts', ['id' => $jobPost->id]);
 });

@@ -1,0 +1,25 @@
+$kind: http-request
+method: POST
+url: '{{baseUrl}}/job-posts'
+order: 2000
+description: 'Creates a job post.'
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Senior Backend Engineer",
+      "description": "Build and maintain APIs for the sportswear CMS platform.",
+      "company_id": 1
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Response has a successful status", function () {
+        pm.expect(pm.response.code).to.be.oneOf([200, 201]);
+      });

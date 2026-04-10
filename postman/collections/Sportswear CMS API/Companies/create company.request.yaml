@@ -1,0 +1,27 @@
+$kind: http-request
+method: POST
+url: '{{baseUrl}}/companies'
+order: 2000
+description: 'Creates a company.'
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Acme Sportswear",
+      "description": "Performance apparel brand focused on runners and gym enthusiasts.",
+      "size": "11-50",
+      "logo_url": "https://example.com/logo.png",
+      "website_url": "https://example.com"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Response has a successful status", function () {
+        pm.expect(pm.response.code).to.be.oneOf([200, 201]);
+      });

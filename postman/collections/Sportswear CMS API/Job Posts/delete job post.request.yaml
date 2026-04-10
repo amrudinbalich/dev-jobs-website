@@ -1,0 +1,18 @@
+$kind: http-request
+method: DELETE
+url: '{{baseUrl}}/job-posts/:jobPost'
+order: 5000
+description: 'Deletes a job post and returns 204 no content.'
+headers:
+  - key: Accept
+    value: application/json
+pathVariables:
+  - key: jobPost
+    value: '1'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Response has a successful status", function () {
+        pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);
+      });

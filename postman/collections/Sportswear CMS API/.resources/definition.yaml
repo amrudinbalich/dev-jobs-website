@@ -1,0 +1,7 @@
+$kind: collection
+name: 'Sportswear CMS API'
+description: 'Laravel API collection for companies and job posts endpoints discovered from the implemented routes.'
+variables:
+  - key: baseUrl
+    value: 'http://localhost'
+    description: 'Base URL for the Laravel app'
