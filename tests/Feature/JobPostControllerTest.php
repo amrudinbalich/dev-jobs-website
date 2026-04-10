@@ -10,7 +10,7 @@ pest()->use(RefreshDatabase::class);
 test('Get all job posts.', function () {
     JobPost::factory(5)->create();
 
-    $response = $this->get('/job-posts');
+    $response = $this->get('/api/job-posts');
 
     $response->assertStatus(200);
     $response->assertJsonCount(5);
@@ -18,7 +18,7 @@ test('Get all job posts.', function () {
 
 // validation
 test('Fails if title is too short.', function () {
-    $response = $this->postJson('/job-posts', [
+    $response = $this->postJson('/api/job-posts', [
         'title' => 'ab',
         'description' => 'Valid description here',
     ]);
@@ -28,7 +28,7 @@ test('Fails if title is too short.', function () {
 });
 
 test('Fails if description is too short.', function () {
-    $response = $this->postJson('/job-posts', [
+    $response = $this->postJson('/api/job-posts', [
         'title' => 'Valid title',
         'description' => 'short',
     ]);
@@ -38,7 +38,7 @@ test('Fails if description is too short.', function () {
 });
 
 test('Fails if title is too long.', function () {
-    $response = $this->postJson('/job-posts', [
+    $response = $this->postJson('/api/job-posts', [
         'title' => str_repeat('a', 256),
         'description' => 'Valid description here',
     ]);
@@ -48,7 +48,7 @@ test('Fails if title is too long.', function () {
 });
 
 test('Fails if fields are missing.', function () {
-    $response = $this->postJson('/job-posts', []);
+    $response = $this->postJson('/api/job-posts', []);
 
     $response->assertStatus(422)
              ->assertJsonValidationErrors(['title', 'description']);
@@ -59,7 +59,7 @@ test('Fails if fields are missing.', function () {
 test('Create job post.', function () {
     $company = Company::factory()->create();
 
-    $response = $this->postJson('/job-posts', [
+    $response = $this->postJson('/api/job-posts', [
         'title' => 'Software Engineer',
         'description' => 'We are looking for a software engineer.',
         'company_id' => $company->id
@@ -80,7 +80,7 @@ test('Create job post.', function () {
 test('Get single job post.', function () {
     $jobPost = JobPost::factory()->create();
 
-    $response = $this->getJson("/job-posts/{$jobPost->id}");
+    $response = $this->getJson("/api/job-posts/{$jobPost->id}");
 
     $response->assertStatus(200)
              ->assertJsonFragment([
@@ -91,7 +91,7 @@ test('Get single job post.', function () {
 });
 
 test('Returns 404 if job post not found.', function () {
-    $response = $this->getJson('/job-posts/999');
+    $response = $this->getJson('/api/job-posts/999');
 
     $response->assertStatus(404);
 });
@@ -100,7 +100,7 @@ test('Returns 404 if job post not found.', function () {
 test('Update job post.', function () {
     $jobPost = JobPost::factory()->create();
 
-    $response = $this->putJson("/job-posts/{$jobPost->id}", [
+    $response = $this->putJson("/api/job-posts/{$jobPost->id}", [
         'title' => 'Updated Title',
         'description' => 'Updated description for job post.'
     ]);
@@ -120,7 +120,7 @@ test('Update job post.', function () {
 test('Partially update job post.', function () {
     $jobPost = JobPost::factory()->create(['title' => 'Original Title']);
 
-    $response = $this->putJson("/job-posts/{$jobPost->id}", [
+    $response = $this->putJson("/api/job-posts/{$jobPost->id}", [
         'title' => 'New Title',
     ]);
 
@@ -129,7 +129,7 @@ test('Partially update job post.', function () {
 });
 
 test('Returns 404 on update if job post not found.', function () {
-    $response = $this->putJson('/job-posts/999', [
+    $response = $this->putJson('/api/job-posts/999', [
         'title' => 'Updated Title',
     ]);
 
@@ -146,7 +146,7 @@ test('Delete job post.', function () {
     ]);
 
     // response
-    $response = $this->delete("/job-posts/{$jobPost->id}");
+    $response = $this->delete("/api/job-posts/{$jobPost->id}");
     $response->assertStatus(204);
 
     // is deleted
