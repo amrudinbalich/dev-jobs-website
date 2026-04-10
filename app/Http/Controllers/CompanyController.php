@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use App\Http\Resources\CompanyResource;
+use App\Http\Resources\CompanyResourceCollection;
 use Illuminate\Http\JsonResponse;
-use App\Models\Company;
 use Illuminate\Http\Response;
+use App\Models\Company;
 
 class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(): CompanyResourceCollection
     {
-        return response()->json(Company::all());
+        return new CompanyResourceCollection(
+            Company::with('jobPosts')->get()
+        );
     }
 
     /**
@@ -30,9 +34,11 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Company $company): JsonResponse
+    public function show(Company $company): CompanyResource
     {
-        return response()->json($company);
+        return new CompanyResource(
+            $company->load('jobPosts')
+        );
     }
 
     /**

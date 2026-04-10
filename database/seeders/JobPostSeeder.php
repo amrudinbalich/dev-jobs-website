@@ -23,6 +23,13 @@ class JobPostSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'title' => 'Junior PHP Developer',
+                'description' => 'As a junior, you will be responsible to build and test reliable REST Apis consumable by clients. On this role you will work closely with other team members, being mentored by senior.',
+                'company_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'title' => 'Frontend Developer (React/TypeScript)',
                 'description' => 'Build responsive user interfaces, work with APIs, and contribute to design and UX decisions.',
                 'company_id' => 2,

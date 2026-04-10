@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Http\Requests\StoreJobPostRequest;
 use App\Http\Requests\UpdateJobPostRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\JobPostResourceCollection;
+use App\Http\Resources\JobPostResource;
 use App\Models\JobPost;
 
 class JobPostController extends Controller
@@ -13,9 +15,11 @@ class JobPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(): JobPostResourceCollection
     {
-        return response()->json(JobPost::all());
+        return new JobPostResourceCollection(
+            JobPost::with('company')->get()
+        );
     }
 
     /**
@@ -30,9 +34,11 @@ class JobPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobPost $jobPost): JsonResponse
+    public function show(JobPost $jobPost): JobPostResource
     {
-        return response()->json($jobPost);
+        return new JobPostResource(
+            $jobPost->load('company')
+        );
     }
 
     /**
