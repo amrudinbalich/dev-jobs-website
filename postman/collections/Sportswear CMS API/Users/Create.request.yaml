@@ -1,0 +1,7 @@
+$kind: http-request
+name: Create
+url: "{{baseUrl}}/users"
+method: POST
+headers:
+  Accept: application/son
+order: 1776027385456
