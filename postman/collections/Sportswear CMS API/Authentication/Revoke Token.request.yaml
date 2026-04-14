@@ -1,0 +1,5 @@
+$kind: http-request
+name: Revoke Token
+url: ""
+method: GET
+order: 1576889347918213
