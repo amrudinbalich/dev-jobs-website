@@ -1,17 +1,14 @@
-import { useState } from 'react';
-import { Button } from "@/components/ui/button";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from '@/pages/Home';
 
-export default function App() {
-    const [count, setCount] = useState(0);
-
+const App: React.FC = () => {
     return (
-        <>
-            <h1>Hello</h1>
-
-            <div>
-                <Button onClick={() => setCount((count) => count + 1)}>increment</Button>
-                <p>count is {count}</p>
-            </div>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
+
+export default App;
