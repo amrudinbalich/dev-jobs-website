@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from "@/components/ui/button";
 
 export default function App() {
     const [count, setCount] = useState(0);
@@ -8,7 +9,7 @@ export default function App() {
             <h1>Hello</h1>
 
             <div>
-                <button onClick={() => setCount((count) => count + 1)}>increment</button>
+                <Button onClick={() => setCount((count) => count + 1)}>increment</Button>
                 <p>count is {count}</p>
             </div>
         </>
