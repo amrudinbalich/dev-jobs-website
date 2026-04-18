@@ -14,7 +14,8 @@ class JobPost extends Model
     protected $fillable = [
         'title',
         'description',
-        'company_id'
+        'company_id',
+        'category_id'
     ];
 
     /**

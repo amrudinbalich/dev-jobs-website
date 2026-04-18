@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\TokenController;
@@ -15,6 +16,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete("users", [UserController::class, 'destroy']);
 });
 
-
 Route::apiResource('job-posts', JobPostController::class);
 Route::apiResource('companies', CompanyController::class);
+Route::apiResource('categories', CategoryController::class);
+
+Route::get("job-posts/category/{id}", [JobPostController::class, 'whereCategory']);
+Route::get("job-posts/company/{id}", [JobPostController::class, 'whereCompany']);

@@ -17,78 +17,89 @@ class JobPostSeeder extends Seeder
         DB::table('job_posts')->insert([
             [
                 'title' => 'Senior PHP Developer (Laravel)',
-                'description' => 'Work on scalable Laravel applications, develop REST APIs, and collaborate with frontend teams using Vue.js.',
+                'description' => 'Work on scalable Laravel applications...',
                 'company_id' => 1,
+                'category_id' => 1, // PHP
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'Junior PHP Developer',
-                'description' => 'As a junior, you will be responsible to build and test reliable REST Apis consumable by clients. On this role you will work closely with other team members, being mentored by senior.',
+                'description' => 'As a junior...',
                 'company_id' => 1,
+                'category_id' => 1, // PHP
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'Frontend Developer (React/TypeScript)',
-                'description' => 'Build responsive user interfaces, work with APIs, and contribute to design and UX decisions.',
+                'description' => 'Build responsive UI...',
                 'company_id' => 2,
+                'category_id' => 11, // React
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'Junior Backend Developer (Node.js)',
-                'description' => 'Develop backend services using Node.js and Express, maintain databases, and implement new features.',
+                'description' => 'Develop backend services...',
                 'company_id' => 3,
+                'category_id' => 2, // JavaScript (Node)
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'Full Stack Developer (Laravel + Vue)',
-                'description' => 'Develop admin panels and dashboards, maintain full stack applications, and optimize performance.',
+                'description' => 'Develop admin panels...',
                 'company_id' => 4,
+                'category_id' => 10, // Laravel
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'DevOps Engineer – AWS / Docker',
-                'description' => 'Build CI/CD pipelines, manage AWS infrastructure, and monitor production systems for reliability.',
+                'description' => 'Build CI/CD pipelines...',
                 'company_id' => 5,
+                'category_id' => 14, // AWS
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'PHP Developer (Symfony)',
-                'description' => 'Maintain and develop enterprise Symfony applications, including API integrations and database design.',
+                'description' => 'Maintain Symfony apps...',
                 'company_id' => 6,
+                'category_id' => 1, // PHP
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'Mobile Developer (Flutter)',
-                'description' => 'Create cross-platform mobile apps with Flutter and Firebase, ensuring high performance and smooth UX.',
+                'description' => 'Create mobile apps...',
                 'company_id' => 7,
+                'category_id' => 4, // može Python/ili napravi Flutter kategoriju kasnije
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'QA Automation Engineer',
-                'description' => 'Write automated tests, maintain testing frameworks, and collaborate with developers to ensure software quality.',
+                'description' => 'Write tests...',
                 'company_id' => 8,
+                'category_id' => 2, // često JS/Python → uzmi JS
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'Java / Spring Boot Developer',
-                'description' => 'Develop backend systems using Java and Spring Boot, implement microservices, and ensure code quality.',
+                'description' => 'Develop backend systems...',
                 'company_id' => 9,
+                'category_id' => 5, // Java
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'Data Engineer (Python/ETL)',
-                'description' => 'Build ETL pipelines, manage data warehouses, and ensure data is reliable and accessible for analytics.',
+                'description' => 'Build ETL pipelines...',
                 'company_id' => 11,
+                'category_id' => 4, // Python
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

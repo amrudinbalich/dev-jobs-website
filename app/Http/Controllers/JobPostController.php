@@ -58,4 +58,28 @@ class JobPostController extends Controller
         JobPost::findOrFail($id)->delete();
         return response()->noContent();
     }
+
+    /**
+     * Filter jobs by category.
+     * @param string $id
+     * @return JobPostResource
+     */
+    public function whereCategory(string $id): JobPostResourceCollection
+    {
+        return new JobPostResourceCollection(
+            JobPost::where('category_id', $id)->get()
+        );
+    }
+
+    /**
+     * Filter jobs by company.
+     * @param string $id
+     * @return JobPostResource
+     */
+    public function whereCompany(string $id): JobPostResourceCollection
+    {
+        return new JobPostResourceCollection(
+            JobPost::where('company_id', $id)->get()
+        );
+    }
 }

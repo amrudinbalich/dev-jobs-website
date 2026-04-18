@@ -23,9 +23,17 @@ class StoreJobPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|min:3|max:255',
+            'title' => "required|string|min:3|max:255|unique:job_posts,title,NULL,id,company_id,{$this->company_id}",
             'description' => 'required|string|min:10|max:5000',
-            'company_id' => 'required|integer'
+            'company_id'  => 'required|integer|exists:companies,id',
+            'category_id' => 'required|integer|exists:categories,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'title.unique' => 'This job title already exists for this company.',
         ];
     }
 }
