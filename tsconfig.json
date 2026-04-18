@@ -6,12 +6,13 @@
     // "outDir": "./dist",
 
     "paths": {
-      "@/*": ["./resources/js/*"]
+      "@/*": ["resources/js/*"]
     },
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
+    "moduleResolution": "bundler",
     "target": "esnext",
     "types": [],
     // For nodejs:
@@ -44,5 +45,6 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+  "include": ["resources/js/**/*"],
 }
