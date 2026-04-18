@@ -16,4 +16,9 @@ export default defineConfig({
         },
     },
     input: ['resources/css/app.css', 'resources/js/app.tsx'],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './resources/js'),
+        },
+    },
 });
