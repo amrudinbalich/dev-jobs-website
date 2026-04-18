@@ -1,0 +1,7 @@
+$kind: http-request
+name: Where Company
+url: "{{baseUrl}}/jobs/company/1"
+method: GET
+headers:
+  Accept: application/json
+order: 4095230354961930

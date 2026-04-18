@@ -2,6 +2,7 @@
 
 use App\Models\Company;
 use App\Models\JobPost;
+use App\Models\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
  
@@ -58,11 +59,13 @@ test('Fails if fields are missing.', function () {
 // create
 test('Create job post.', function () {
     $company = Company::factory()->create();
+    $category = Category::factory()->create();
 
     $response = $this->postJson('/api/job-posts', [
         'title' => 'Software Engineer',
         'description' => 'We are looking for a software engineer.',
-        'company_id' => $company->id
+        'company_id' => $company->id,
+        'category_id' => $category->id
     ]);
 
     $response->assertStatus(201)
@@ -153,4 +156,25 @@ test('Delete job post.', function () {
     $this->assertDatabaseMissing('job_posts', [
         'id' => $jobPost->id,
     ]);
+});
+
+// custom
+test('Get job posts by category.', function () {
+    $company = Company::factory()->create();
+    $category = Category::factory()->create();
+    JobPost::factory(3)->create(['company_id' => $company->id, 'category_id' => $category->id]);
+
+    $response = $this->getJson("/api/job-posts/category/{$category->id}");
+
+    $response->assertStatus(200);
+});
+
+test('Get job posts by company.', function () {
+    $company = Company::factory()->create();
+    $category = Category::factory()->create();
+    JobPost::factory(3)->create(['company_id' => $company->id, 'category_id' => $category->id]);
+
+    $response = $this->getJson("/api/job-posts/company/{$company->id}");
+
+    $response->assertStatus(200);
 });

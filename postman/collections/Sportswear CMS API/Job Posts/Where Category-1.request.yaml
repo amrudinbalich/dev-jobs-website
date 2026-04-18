@@ -1,0 +1,5 @@
+$kind: http-request
+name: Where Category
+url: ""
+method: GET
+order: 1976256620923637
