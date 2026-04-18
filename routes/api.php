@@ -16,7 +16,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete("users", [UserController::class, 'destroy']);
 });
 
-
 Route::apiResource('job-posts', JobPostController::class);
 Route::apiResource('companies', CompanyController::class);
 Route::apiResource('categories', CategoryController::class);
