@@ -26,6 +26,15 @@ i18n.use(initReactI18next).init({
                     noAccountPrompt: 'Don’t have an account?',
                     registerLink: 'Register',
                     name: 'Name',
+                },
+                register: {
+                    createAccount: 'Create Account',
+                    createAccountDescription: 'Fill in the details below to get started',
+                    register: 'Register',
+                    registerDescription: 'Enter your information to create an account',
+                    submit: 'Create Account',
+                    haveAccountPrompt: 'Already have an account?',
+                    loginLink: 'Login',
                 }
             }
         },

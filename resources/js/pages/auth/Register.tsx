@@ -12,44 +12,49 @@ import AgreeOnTerms from "@/components/inputs/AgreeOnTerms";
 import ToLogin from "@/components/redirections/ToLogin";
 
 export default function RegisterScreen() {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-muted/40 px-4">
-      {/* Page Title */}
-      <div className="mb-6 text-center">
-        <h1 className="text-3xl font-bold tracking-tight">Create account</h1>
-        <p className="text-sm text-muted-foreground">
-          Fill in the details below to get started
-        </p>
-      </div>
+    const { t } = useTranslation();
 
-      {/* Card */}
-      <Card className="w-full max-w-md shadow-xl">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Register</CardTitle>
-          <CardDescription>
-            Enter your information to create an account
-          </CardDescription>
-        </CardHeader>
+    return (
+        <div className="flex min-h-screen flex-col items-center justify-center bg-muted/40 px-4">
+            {/* Page Title */}
+            <div className="mb-6 text-center">
+                <h1 className="text-3xl font-bold tracking-tight">
+                    {t('register.createAccount')}
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                    {t('register.createAccountDescription')}
+                </p>
+            </div>
 
-        <CardContent>
-          <form className="space-y-5">
+            {/* Card */}
+            <Card className="w-full max-w-md shadow-xl">
+                <CardHeader className="space-y-1">
+                    <CardTitle className="text-2xl">
+                        {t('register.register')}
+                    </CardTitle>
+                    <CardDescription>
+                            {t('register.registerDescription')}
+                    </CardDescription>
+                </CardHeader>
 
-            <NameInput />
+                <CardContent>
+                    <form className="space-y-5">
+                        <NameInput />
 
-            <EmailInput />
+                        <EmailInput />
 
-            <PasswordInput />
+                        <PasswordInput />
 
-            <AgreeOnTerms />
+                        <AgreeOnTerms />
 
-            <Button className="w-full" type="submit">
-              Create Account
-            </Button>
+                        <Button className="w-full" type="submit">
+                            {t('register.submit')}
+                        </Button>
 
-            <ToLogin />
-          </form>
-        </CardContent>
-      </Card>
-    </div>
-  );
+                        <ToLogin />
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
+    );
 }
