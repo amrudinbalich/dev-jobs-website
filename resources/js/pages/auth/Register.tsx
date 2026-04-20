@@ -3,6 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useTranslation } from 'react-i18next';
+
+import NameInput from "@/components/inputs/Name";
+import EmailInput from "@/components/inputs/Email";
+import PasswordInput from "@/components/inputs/Password";
+import AgreeOnTerms from "@/components/inputs/AgreeOnTerms";
+import ToLogin from "@/components/redirections/ToLogin";
 
 export default function RegisterScreen() {
   return (
@@ -26,51 +33,20 @@ export default function RegisterScreen() {
 
         <CardContent>
           <form className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="email">Name</Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="John Doe"
-                required
-              />
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                required
-              />
-            </div>
+            <NameInput />
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" placeholder="••••••••" required />
-            </div>
+            <EmailInput />
 
-            <div className="flex items-center space-x-2">
-              <Checkbox id="terms" />
-              <label
-                htmlFor="terms"
-                className="text-sm text-muted-foreground"
-              >
-                I agree to the terms and conditions
-              </label>
-            </div>
+            <PasswordInput />
+
+            <AgreeOnTerms />
 
             <Button className="w-full" type="submit">
               Create Account
             </Button>
 
-            <p className="text-center text-sm text-muted-foreground">
-              Already have an account?{' '}
-              <a href="/login" className="underline underline-offset-4 hover:text-primary">
-                Login
-              </a>
-            </p>
+            <ToLogin />
           </form>
         </CardContent>
       </Card>

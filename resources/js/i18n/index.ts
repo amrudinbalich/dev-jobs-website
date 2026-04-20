@@ -7,6 +7,15 @@ i18n.use(initReactI18next).init({
     resources: {
         en: {
             translation: {
+                title: 'Login',
+                email: 'Email',
+                password: 'Password',
+                submit: 'Submit',
+                helloUser: 'Hello User',
+                signInPrompt: 'Sign in to your account to continue',
+                noAccountPrompt: 'Don’t have an account?',
+                registerLink: 'Register',
+                name: 'Name',
                 login: {
                     title: 'Login',
                     email: 'Email',
@@ -16,6 +25,7 @@ i18n.use(initReactI18next).init({
                     signInPrompt: 'Sign in to your account to continue',
                     noAccountPrompt: 'Don’t have an account?',
                     registerLink: 'Register',
+                    name: 'Name',
                 }
             }
         },
