@@ -21,4 +21,13 @@ class JobPost extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    /**
+     * Get the Category that Job Post belongs to.
+     * @return BelongsTo<Category, JobPost>
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
